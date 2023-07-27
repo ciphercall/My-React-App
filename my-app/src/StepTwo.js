@@ -20,23 +20,27 @@ function StepTwo(props) {
     <form onSubmit={handleSubmit}>
       <label>
         Input Five:
-        <input type="text" value={inputFive} onChange={event => setInputFive(event.target.value)} />
       </label>
+      <input type="text" value={inputFive} onChange={event => setInputFive(event.target.value)} />
+
       <br />
       <label>
         Input Six:
-        <input type="text" value={inputSix} onChange={event => setInputSix(event.target.value)} />
       </label>
+      <input type="text" value={inputSix} onChange={event => setInputSix(event.target.value)} />
+
       <br />
       <label>
         Input Seven:
-        <input type="text" value={inputSeven} onChange={event => setInputSeven(event.target.value)} />
       </label>
+      <input type="text" value={inputSeven} onChange={event => setInputSeven(event.target.value)} />
+
       <br />
       <label>
         Input Eight:
-        <input type="text" value={inputEight} onChange={event => setInputEight(event.target.value)} />
       </label>
+      <input type="text" value={inputEight} onChange={event => setInputEight(event.target.value)} />
+
       <br />
       <label htmlFor="file">Upload a file:</label> 
       <br />

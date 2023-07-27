@@ -16,23 +16,27 @@ function StepOne(props) {
     <form onSubmit={handleSubmit}>
       <label>
         Input One:
-        <input type="text" value={inputOne} onChange={event => setInputOne(event.target.value)} />
       </label>
+      <input type="text" value={inputOne} onChange={event => setInputOne(event.target.value)} />
+
       <br />
       <label>
         Input Two:
-        <input type="text" value={inputTwo} onChange={event => setInputTwo(event.target.value)} />
       </label>
+      <input type="text" value={inputTwo} onChange={event => setInputTwo(event.target.value)} />
+
       <br />
       <label>
         Input Three:
-        <input type="text" value={inputThree} onChange={event => setInputThree(event.target.value)} />
       </label>
+      <input type="text" value={inputThree} onChange={event => setInputThree(event.target.value)} />
+
       <br />
       <label>
         Input Four:
-        <input type="text" value={inputFour} onChange={event => setInputFour(event.target.value)} />
       </label>
+      <input type="text" value={inputFour} onChange={event => setInputFour(event.target.value)} />
+
     </form>
   );
 }
