@@ -32,8 +32,6 @@ function StepTwo(props) {
         Input Eight:
         <input type="text" value={inputEight} onChange={event => setInputEight(event.target.value)} />
       </label>
-      <br />
-      <button type="submit">Submit</button>
     </form>
   );
 }

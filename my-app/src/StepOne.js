@@ -32,8 +32,6 @@ function StepOne(props) {
         Input Four:
         <input type="text" value={inputFour} onChange={event => setInputFour(event.target.value)} />
       </label>
-      <br />
-      <button type="submit">Next</button>
     </form>
   );
 }
