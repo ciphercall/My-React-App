@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './styles.css';
 
 function StepOne(props) {
   const [inputOne, setInputOne] = useState('');

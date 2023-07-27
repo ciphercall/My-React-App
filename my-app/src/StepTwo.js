@@ -5,10 +5,15 @@ function StepTwo(props) {
   const [inputSix, setInputSix] = useState('');
   const [inputSeven, setInputSeven] = useState('');
   const [inputEight, setInputEight] = useState('');
+  const [file, setFile] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Submit the form
+  }
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
   }
 
   return (
@@ -32,6 +37,11 @@ function StepTwo(props) {
         Input Eight:
         <input type="text" value={inputEight} onChange={event => setInputEight(event.target.value)} />
       </label>
+      <br />
+      <label htmlFor="file">Upload a file:</label> 
+      <br />
+      <input type="file" id="file" name="file" onChange={handleFileChange} />
+
     </form>
   );
 }
