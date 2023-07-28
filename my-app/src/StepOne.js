@@ -1,32 +1,33 @@
-import React, { useState } from 'react';
-import './styles.css';
+import React from 'react';
 
 function StepOne(props) {
   return (
     <form>
       <label>
-      Project Name
+        Project Name
+        <input type="text" value={props.inputOne} onChange={(event) => props.setInputOne(event.target.value)} />
       </label>
-      <input type="text" value={props.inputOne} onChange={(event) => props.setInputOne(event.target.value)} />
 
       <br />
+
       <label>
-      Project Description
+        Project Description
+        <input type="text" value={props.inputTwo} onChange={(event) => props.setInputTwo(event.target.value)} />
       </label>
-      <input type="text" value={props.inputTwo} onChange={(event) => props.setInputTwo(event.target.value)} />
 
       <br />
+
       <label>
-      Client
+        Client
+        <input type="text" value={props.inputThree} onChange={(event) => props.setInputThree(event.target.value)} />
       </label>
-      <input type="text" value={props.inputThree} onChange={(event) => props.setInputThree(event.target.value)} />
 
       <br />
-      <label>
-      Contractor
-      </label>
-      <input type="text" value={props.inputFour} onChange={(event) => props.setInputFour(event.target.value)} />
 
+      <label>
+        Contractor
+        <input type="text" value={props.inputFour} onChange={(event) => props.setInputFour(event.target.value)} />
+      </label>
     </form>
   );
 }
