@@ -52,9 +52,7 @@ function App() {
     <div className="container mt-5">
       <h1>Welcome to my web app!</h1>
       <p>This is my custom home page.</p>
-      <div className="d-flex justify-content-center"> {/* Center the buttons */}
-        <MultiStep steps={steps} activeStep={step} />
-      </div>
+      <MultiStep steps={steps} activeStep={step} />
     </div>
   );
 }
