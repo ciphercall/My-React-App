@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MultiStep from 'react-multistep';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import the Bootstrap CSS
 
 function App() {
   const [inputOne, setInputOne] = useState('');
@@ -26,7 +27,6 @@ function App() {
         setInputTwo={setInputTwo}
         setInputThree={setInputThree}
         setInputFour={setInputFour}
-        nextStep={() => setStep(1)}
       />
     },
     {
@@ -49,10 +49,12 @@ function App() {
   const [step, setStep] = useState(0);
 
   return (
-    <div>
+    <div className="container mt-5">
       <h1>Welcome to my web app!</h1>
       <p>This is my custom home page.</p>
-      <MultiStep steps={steps} activeStep={step} />
+      <div className="d-flex justify-content-center"> {/* Center the buttons */}
+        <MultiStep steps={steps} activeStep={step} />
+      </div>
     </div>
   );
 }

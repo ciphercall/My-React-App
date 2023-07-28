@@ -3,7 +3,7 @@ import React from 'react';
 function StepOne(props) {
   return (
     <form>
-      <div className="form-group">
+      <div className="form-group mt-4">
         <label>Project Name:</label>
         <input
           type="text"
@@ -13,7 +13,7 @@ function StepOne(props) {
         />
       </div>
 
-      <div className="form-group">
+      <div className="form-group mt-4">
         <label>Project Description:</label>
         <input
           type="text"
@@ -23,7 +23,7 @@ function StepOne(props) {
         />
       </div>
 
-      <div className="form-group">
+      <div className="form-group mt-4">
         <label>Client:</label>
         <input
           type="text"
@@ -33,7 +33,7 @@ function StepOne(props) {
         />
       </div>
 
-      <div className="form-group">
+      <div className="form-group mt-4">
         <label>Contractor:</label>
         <input
           type="text"
