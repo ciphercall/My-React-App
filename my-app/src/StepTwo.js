@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import the Bootstrap CSS
 
 function StepTwo(props) {
   const [maxX, setMaxX] = useState('');
@@ -61,61 +62,67 @@ function StepTwo(props) {
   return (
     <form onSubmit={handleSubmit}>
       {/* Input fields from Step One */}
-      <label>Project Name:</label>
-      <input type="text" value={props.inputOne} disabled />
+      <div className="form-group">
+        <label>Project Name:</label>
+        <input type="text" className="form-control" value={props.inputOne} disabled />
+      </div>
 
-      <br />
+      <div className="form-group">
+        <label>Project Description:</label>
+        <input type="text" className="form-control" value={props.inputTwo} disabled />
+      </div>
 
-      <label>Project Description:</label>
-      <input type="text" value={props.inputTwo} disabled />
+      <div className="form-group">
+        <label>Client:</label>
+        <input type="text" className="form-control" value={props.inputThree} disabled />
+      </div>
 
-      <br />
-
-      <label>Client:</label>
-      <input type="text" value={props.inputThree} disabled />
-
-      <br />
-
-      <label>Contractor:</label>
-      <input type="text" value={props.inputFour} disabled />
+      <div className="form-group">
+        <label>Contractor:</label>
+        <input type="text" className="form-control" value={props.inputFour} disabled />
+      </div>
 
       {/* New inputs */}
-      <br />
-      <br />
+      <div className="form-row">
+        <div className="col">
+          <label>Max X:</label>
+          <input type="text" className="form-control" value={maxX} onChange={(e) => setMaxX(e.target.value)} />
+        </div>
+        <div className="col">
+          <label>Min X:</label>
+          <input type="text" className="form-control" value={minX} onChange={(e) => setMinX(e.target.value)} />
+        </div>
+      </div>
 
-      <label>Max X:</label>
-      <input type="Text" value={maxX} onChange={(e) => setMaxX(e.target.value)} />
-      &nbsp;
+      <div className="form-row">
+        <div className="col">
+          <label>Max Y:</label>
+          <input type="text" className="form-control" value={maxY} onChange={(e) => setMaxY(e.target.value)} />
+        </div>
+        <div className="col">
+          <label>Min Y:</label>
+          <input type="text" className="form-control" value={minY} onChange={(e) => setMinY(e.target.value)} />
+        </div>
+      </div>
 
-      <label>Min X:</label>
-      <input type="Text" value={minX} onChange={(e) => setMinX(e.target.value)} />
-
-      <br />
-      <br />
-
-      <label>Max Y:</label>
-      <input type="Text" value={maxY} onChange={(e) => setMaxY(e.target.value)} />
-      &nbsp;
-
-      <label>Min Y:</label>
-      <input type="Text" value={minY} onChange={(e) => setMinY(e.target.value)} />
-
-      <br />
-      <br />
-
-      <label>Max Z:</label>
-      <input type="Text" value={maxZ} onChange={(e) => setMaxZ(e.target.value)} />
-      &nbsp;
-
-      <label>Min Z:</label>
-      <input type="Text" value={minZ} onChange={(e) => setMinZ(e.target.value)} />
+      <div className="form-row">
+        <div className="col">
+          <label>Max Z:</label>
+          <input type="text" className="form-control" value={maxZ} onChange={(e) => setMaxZ(e.target.value)} />
+        </div>
+        <div className="col">
+          <label>Min Z:</label>
+          <input type="text" className="form-control" value={minZ} onChange={(e) => setMinZ(e.target.value)} />
+        </div>
+      </div>
 
       {/* File upload */}
-      <br />
-      <br />
-      <label htmlFor="file">Upload a file:</label>
-      <br />
-      <input type="file" id="file" name="file" onChange={handleFileChange} />
+      <div className="form-group">
+        <label htmlFor="file">Upload a file:</label>
+        <input type="file" className="form-control-file" id="file" name="file" onChange={handleFileChange} />
+      </div>
+
+      <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   );
 }
