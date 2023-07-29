@@ -23,7 +23,7 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
     setStep(2);
   };
 
-  const handleFileChange = (event) => {
+  const handleFileUpload = (event) => {
     const file = event.target.files[0];
     Papa.parse(file, {
       header: true,
@@ -35,57 +35,48 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
         let minYValue = Number.MAX_SAFE_INTEGER;
         let maxZValue = Number.MIN_SAFE_INTEGER;
         let minZValue = Number.MAX_SAFE_INTEGER;
-
+  
         for (let i = 0; i < data.length; i++) {
           const x = parseFloat(data[i].X);
           const y = parseFloat(data[i].Y);
           const z = parseFloat(data[i].Z);
-
+  
           if (!isNaN(x)) {
             maxXValue = Math.max(maxXValue, x);
             minXValue = Math.min(minXValue, x);
           }
-
+  
           if (!isNaN(y)) {
             maxYValue = Math.max(maxYValue, y);
             minYValue = Math.min(minYValue, y);
           }
-
+  
           if (!isNaN(z)) {
             maxZValue = Math.max(maxZValue, z);
             minZValue = Math.min(minZValue, z);
           }
         }
-
+  
         setMaxX(maxXValue.toString());
         setMinX(minXValue.toString());
         setMaxY(maxYValue.toString());
         setMinY(minYValue.toString());
         setMaxZ(maxZValue.toString());
         setMinZ(minZValue.toString());
-      },
-    });
-  };
-
-  const handleShowChart = (event) => {
-    const file = event.target.files[0];
-    Papa.parse(file, {
-      header: true,
-      complete: (results) => {
-        const data = results.data;
+  
         const xValues = [];
         const kpValues = [];
-
+  
         for (let i = 0; i < data.length; i++) {
           const x = parseFloat(data[i].X);
           const kp = parseFloat(data[i].KP);
-
+  
           if (!isNaN(x) && !isNaN(kp)) {
             xValues.push(x);
             kpValues.push(kp);
           }
         }
-
+  
         const trace = {
           x: kpValues,
           y: xValues,
@@ -93,18 +84,19 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
           mode: 'lines+markers',
           marker: { color: 'red' },
         };
-
+  
         const layout = {
           title: 'X vs KP',
           xaxis: { title: 'KP' },
           yaxis: { title: 'X' },
         };
-
+  
         setChartData({ trace, layout });
         setShowChart(true);
       },
     });
   };
+  
 
   const handleCloseChart = () => setShowChart(false);
 
@@ -192,7 +184,7 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
               className="form-control-file"
               id="file"
               name="file"
-              onChange={handleShowChart}
+              onChange={handleFileUpload}
             />
           </div>
 
