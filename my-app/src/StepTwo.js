@@ -188,22 +188,22 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
             />
           </div>
 
-          {/* Chart modal */}
-          <Modal show={showChart} onHide={handleCloseChart}>
-            <Modal.Header closeButton>
-              <Modal.Title>X vs KP</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {chartData.trace && chartData.layout && (
-                <Plot data={[chartData.trace]} layout={chartData.layout} />
-              )}
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseChart}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
+{/* Chart modal */}
+<Modal show={showChart} onHide={handleCloseChart} size="lg">
+  <Modal.Header closeButton>
+    <Modal.Title>X vs KP</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {chartData.trace && chartData.layout && (
+      <Plot data={[chartData.trace]} layout={chartData.layout} style={{ width: '90%' }} />
+    )}
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleCloseChart}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
 
           {/* Submit button */}
           <div className="text-center mt-4">
