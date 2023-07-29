@@ -1,9 +1,10 @@
-// StepTwo.js
-
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Papa from 'papaparse';
 import ResultTable from './ResultTable';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Plot from 'react-plotly.js';
 
 function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
   const [maxX, setMaxX] = useState('');
@@ -13,6 +14,8 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
   const [maxZ, setMaxZ] = useState('');
   const [minZ, setMinZ] = useState('');
   const [step, setStep] = useState(1);
+  const [showChart, setShowChart] = useState(false);
+  const [chartData, setChartData] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -64,6 +67,47 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
     });
   };
 
+  const handleShowChart = (event) => {
+    const file = event.target.files[0];
+    Papa.parse(file, {
+      header: true,
+      complete: (results) => {
+        const data = results.data;
+        const xValues = [];
+        const kpValues = [];
+
+        for (let i = 0; i < data.length; i++) {
+          const x = parseFloat(data[i].X);
+          const kp = parseFloat(data[i].KP);
+
+          if (!isNaN(x) && !isNaN(kp)) {
+            xValues.push(x);
+            kpValues.push(kp);
+          }
+        }
+
+        const trace = {
+          x: kpValues,
+          y: xValues,
+          type: 'scatter',
+          mode: 'lines+markers',
+          marker: { color: 'red' },
+        };
+
+        const layout = {
+          title: 'X vs KP',
+          xaxis: { title: 'KP' },
+          yaxis: { title: 'X' },
+        };
+
+        setChartData({ trace, layout });
+        setShowChart(true);
+      },
+    });
+  };
+
+  const handleCloseChart = () => setShowChart(false);
+
   return (
     <div>
       {step === 1 && (
@@ -82,6 +126,7 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
               </div>
             </div>
           </div>
+
           <div className="row mb-3">
             <div className="col-md-6">
               <div className="form-group">
@@ -92,7 +137,7 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
             <div className="col-md-6">
               <div className="form-group">
                 <label>Contractor:</label>
-                <input type="text" className="form-control" value={inputFour} disabled />
+                <input type="text" className= "form-control" value={inputFour} disabled />
               </div>
             </div>
           </div>
@@ -131,7 +176,7 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
                 <input type="text" className="form-control" value={maxZ} onChange={(e) => setMaxZ(e.target.value)} />
               </div>
             </div>
-            <div className="col-md-6">
+            <div className= "col-md-6">
               <div className="form-group">
                 <label>Min Z:</label>
                 <input type="text" className="form-control" value={minZ} onChange={(e) => setMinZ(e.target.value)} />
@@ -142,9 +187,33 @@ function StepTwo({ inputOne, inputTwo, inputThree, inputFour }) {
           {/* File upload */}
           <div className="form-group">
             <label htmlFor="file">Upload a file:</label>
-            <input type="file" className="form-control-file" id="file" name="file" onChange={handleFileChange} />
+            <input
+              type="file"
+              className="form-control-file"
+              id="file"
+              name="file"
+              onChange={handleShowChart}
+            />
           </div>
 
+          {/* Chart modal */}
+          <Modal show={showChart} onHide={handleCloseChart}>
+            <Modal.Header closeButton>
+              <Modal.Title>X vs KP</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {chartData.trace && chartData.layout && (
+                <Plot data={[chartData.trace]} layout={chartData.layout} />
+              )}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseChart}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          {/* Submit button */}
           <div className="text-center mt-4">
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
@@ -178,3 +247,6 @@ StepTwo.propTypes = {
 };
 
 export default StepTwo;
+
+
+
